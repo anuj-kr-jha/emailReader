@@ -5,13 +5,11 @@ const fs = require('fs');
 const Imap = require('imap');
 const cheerio = require('cheerio');
 
+const markSeen = true;
+
 const imapConfig = {
   user: 'bulliontradersssi@gmail.com',
   password: 'tgweffrdkjbpsiep',
-  //
-  // password: 'iexpkfsgxmrwswut',
-  // password: 'vslejqhibztbyolw',
-  // password: 'Bovkkib@2',
   host: 'imap.gmail.com',
   port: 993,
   tls: true,
@@ -108,7 +106,7 @@ imap.once('ready', function () {
     // Fetch unread emails
     const fetchUnreadOptions = {
       bodies: ['HEADER', 'TEXT'],
-      markSeen: false,
+      markSeen: markSeen,
     };
     imap.search(['UNSEEN'], function (err, results) {
       try {
@@ -126,7 +124,7 @@ imap.once('ready', function () {
     imap.on('mail', function (numNewMsgs) {
       const fetchOptions = {
         bodies: ['HEADER', 'TEXT'],
-        markSeen: true,
+        markSeen: markSeen,
       };
 
       const f = imap.seq.fetch(box.messages.total + ':*', fetchOptions);

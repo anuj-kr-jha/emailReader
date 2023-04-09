@@ -4,8 +4,19 @@
   "main": "index.js",
   "type": "commonjs",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon ./src/index.js --ignore '*.csv'",
+    "preinstall": "npm i -g forever",
+    "start": "node ./src/index.js",
+    "launch": "forever start ./src/index.js",
+    "restart": "forever restart 0 ",
+    "stop": "forever stop 0 ",
+    "logs": "forever logs 0 ",
+    "list": "forever list",
+    "pretty": "prettier --write \"./**/*.{mjs,js,ts,jsx,json,csv}\""
+  },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "imap-simple": "^5.1.0"
+    "imap": "^0.8.19"
   }
 }
