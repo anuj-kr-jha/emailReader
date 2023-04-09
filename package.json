@@ -1,0 +1,11 @@
+{
+  "name": "t",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "commonjs",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "imap-simple": "^5.1.0"
+  }
+}
