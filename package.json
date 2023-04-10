@@ -1,5 +1,5 @@
 {
-  "name": "t",
+  "name": "read-email-and-save-to-csv",
   "version": "1.0.0",
   "main": "index.js",
   "type": "commonjs",
