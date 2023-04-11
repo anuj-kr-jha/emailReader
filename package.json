@@ -8,7 +8,7 @@
     "dev": "nodemon ./src/index.js --ignore '*.csv'",
     "preinstall": "npm i -g forever",
     "start": "node ./src/index.js",
-    "launch": "forever start -o ./logs/out.log -e ./logs/err.log ./src/index.js",
+    "launch": "forever start --append -o ./logs/out.log -e ./logs/err.log ./src/index.js",
     "restart": "forever restart 0 ",
     "stop": "forever stop 0 ",
     "logs": "forever logs 0 ",

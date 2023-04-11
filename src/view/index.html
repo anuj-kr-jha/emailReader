@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IMAP Connection Status</title>
+  </head>
+  <body>
+    <h1>IMAP Connection Status</h1>
+    <p id="status">Checking...</p>
+
+    <script>
+      const statusElement = document.getElementById('status');
+
+      async function updateStatus() {
+        try {
+          const response = await fetch('/status');
+          const data = await response.json();
+          statusElement.textContent = data.imapConnected ? 'Connected' : 'Disconnected';
+        } catch (err) {
+          console.error('Error fetching connection status:', err);
+          statusElement.textContent = 'Error fetching connection status';
+        }
+      }
+
+      setInterval(updateStatus, 1000); // Update the status every second
+    </script>
+  </body>
+</html>

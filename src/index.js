@@ -1,2 +1,5 @@
 const { initialize } = require('./lib/http');
-initialize().then(() => require('./lib/readMail'));
+initialize().then(() => {
+  const { connectToImap, disconnect } = require('./lib/imap');
+  connectToImap();
+});

@@ -1,6 +1,6 @@
-process.env.TZ = 'Asia/Bahrain';
+// process.env.TZ = 'Asia/Bahrain';
 process.env.NODE_ENV = 'dev';
-process.env.PORT = process.env.PORT || '4000';
+process.env.PORT = process.env.PORT || '8000';
 process.env.HOST = '127.0.0.1';
 process.env.UV_THREADPOOL_SIZE = 1;
 
@@ -40,7 +40,8 @@ Object.keys(colors).forEach((color) => {
     get:
       () =>
       (...args) => {
-        console.log(args.map((arg) => `${colors[color]}%s${colors.reset}`).join(' '), ...args);
+        // console.log(args.map((arg) => `${colors[color]}%s${colors.reset}`).join(' '), ...args);
+        console.log(...args);
       },
   });
 });

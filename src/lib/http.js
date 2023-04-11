@@ -3,9 +3,50 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 // const csv = require('csv-parser');
-
+const { isConnected, disconnect } = require('./imap');
 // txt
 const server = http.createServer((req, res) => {
+  if (req.url === '/end') {
+    const imapConnected = isConnected();
+    res.setHeader('Content-Type', 'text/plain');
+    if (imapConnected) disconnect();
+    res.end('disconnected');
+    return;
+  }
+  if (req.url === '/status') {
+    const imapConnected = isConnected();
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ imapConnected }));
+    return;
+  }
+  if (req.url === '/health') {
+    const fileName = path.join(__dirname, `../view/index.html`);
+    // Serve the index.html file when the root path is requested
+    res.setHeader('Content-Type', 'text/html');
+    fs.createReadStream(fileName).pipe(res);
+    return;
+  }
+  if (req.url === '/logs/err') {
+    const fileName = path.join(__dirname, `../../logs/err.log`);
+    // Serve the index.html file when the root path is requested
+    res.setHeader('Content-Type', 'text/plain');
+    fs.createReadStream(fileName).pipe(res);
+    return;
+  }
+  if (req.url === '/logs/out') {
+    const fileName = path.join(__dirname, `../../logs/out.log`);
+    // Serve the index.html file when the root path is requested
+    res.setHeader('Content-Type', 'text/plain');
+    fs.createReadStream(fileName).pipe(res);
+    return;
+  }
+  if (req.url === '/health') {
+    const fileName = path.join(__dirname, `../view/index.html`);
+    // Serve the index.html file when the root path is requested
+    res.setHeader('Content-Type', 'text/html');
+    fs.createReadStream(fileName).pipe(res);
+    return;
+  }
   // Set response headers
   res.setHeader('Content-Type', 'text/plain');
 
